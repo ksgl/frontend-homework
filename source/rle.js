@@ -3,20 +3,20 @@
 
 /* 1. a simple implementation */
 /*
-const rle = function(stringToEncode) {
-    var letterOccurenceCount = 1;
-    var stringEncoded = "";
-	for (var i = 0; i < stringToEncode.length; ++i) {
+const rle = stringToEncode => {
+    if (typeof(stringToEncode) !== "string" || stringToEncode.length === 0) {
+        throw new TypeError("Invalid input: not an empty string expected.");
+    }
+
+    let letterOccurenceCount = 1;
+    let stringEncoded = "";
+	for (let i = 0; i < stringToEncode.length; ++i) {
         while (stringToEncode[i] === stringToEncode[i + 1]) {
             ++letterOccurenceCount;
             ++i;
         }
-        if (letterOccurenceCount === 1) {
-            stringEncoded += stringToEncode[i];
-        }
-        else {
-            stringEncoded += stringToEncode[i] + letterOccurenceCount.toString();
-        }
+
+        stringEncoded += stringToEncode[i] + ((letterOccurenceCount > 1) ? letterOccurenceCount.toString() : "");
 
         letterOccurenceCount = 1;
     }
@@ -27,14 +27,18 @@ const rle = function(stringToEncode) {
 
 /* 2. a more sophisticated implementation */
 const assembleEncodedString = match => {
-    var stringEncoded = "";
-    stringEncoded += match[0] + ((match.length != 1) ? match.length : "");
+    let stringEncoded = "";
+    stringEncoded += match[0] + ((match.length > 1) ? match.length : "");
 
     return stringEncoded;
 }
 
 const rle = stringToEncode => {
-    var stringEncoded = "";
+    if (typeof(stringToEncode) !== "string" || stringToEncode.length === 0) {
+        throw new TypeError("Invalid input: not an empty string expected.");
+    }
+
+    let stringEncoded = "";
     stringToEncode.match(/(.)\1*/g).forEach(
                                         function(matched) {
                                             stringEncoded += assembleEncodedString(matched)
