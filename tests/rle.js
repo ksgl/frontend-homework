@@ -10,11 +10,11 @@ QUnit.module('Тестируем функцию rle', function () {
 
 QUnit.module('Тестируем функцию rle при неправильных входных данных', function () {
 	QUnit.test('rle работает правильно', function (assert) {
-		let errorInstance = new TypeError("Invalid input: not an empty string expected.");
-		assert.throws(() => rle(5), errorInstance);
-		assert.throws(() => rle(null), errorInstance);
-		assert.throws(() => rle(undefined), errorInstance);
-		assert.throws(() => rle(""), errorInstance);
+		//let errorInstance = new TypeError("Invalid input: not an empty string expected.");
+		assert.strictEqual(rle(5), null);
+		assert.strictEqual(rle(null), null);
+		assert.strictEqual(rle(undefined), null);
+		assert.strictEqual(rle(""), null);
 	});
 });
 

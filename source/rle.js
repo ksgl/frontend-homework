@@ -4,16 +4,16 @@
 /* 1. a simple implementation */
 /*
 const rle = stringToEncode => {
-    if (typeof(stringToEncode) !== "string" || stringToEncode.length === 0) {
-        throw new TypeError("Invalid input: not an empty string expected.");
+    if (typeof stringToEncode !== "string" || stringToEncode.length === 0) {
+        return null;
     }
 
     let letterOccurenceCount = 1;
     let stringEncoded = "";
-	for (let i = 0; i < stringToEncode.length; ++i) {
+	for (let i = 0; i < stringToEncode.length; i++) {
         while (stringToEncode[i] === stringToEncode[i + 1]) {
-            ++letterOccurenceCount;
-            ++i;
+            letterOccurenceCount++;
+            i++;
         }
 
         stringEncoded += stringToEncode[i] + ((letterOccurenceCount > 1) ? letterOccurenceCount.toString() : "");
@@ -34,8 +34,8 @@ const assembleEncodedString = match => {
 }
 
 const rle = stringToEncode => {
-    if (typeof(stringToEncode) !== "string" || stringToEncode.length === 0) {
-        throw new TypeError("Invalid input: not an empty string expected.");
+    if (typeof stringToEncode !== "string" || stringToEncode.length === 0) {
+        return null;
     }
 
     let stringEncoded = "";
@@ -44,6 +44,6 @@ const rle = stringToEncode => {
                                             stringEncoded += assembleEncodedString(matched)
                                         }
                                     );
-    
+
     return stringEncoded;
 }
